@@ -1,0 +1,87 @@
+.container {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f8ff;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #48a0dc;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.book-list {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: auto;
+}
+
+.book-item {
+  background-color: #48a0dc;
+  color: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+}
+
+.book-item:hover {
+  transform: scale(1.02);
+  background-color: #48a0dc;
+}
+
+.rank {
+  font-weight: bold;
+  background: white;
+  color: #48a0dc;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 32px;
+}
+
+
+@media (max-width: 600px) {
+  .book-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .rank {
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #eaf6ff; 
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
