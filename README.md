@@ -173,7 +173,108 @@ Para tornar o nome do livro clicável, levando ao site da Bookplay, basta altera
 ```
 
 ---------------------------------------------------------------------------------------------------------------
+
 **NIVEL 3**
+
+📚 Descrição
+
+Este projeto é uma aplicação web construída com React + Vite, que exibe os 10 conteúdos mais acessados da plataforma Bookplay, incluindo livros, cursos, videoaulas, audiobooks e banca. Os dados são carregados dinamicamente de uma API externa e armazenados no sessionStorage para otimizar requisições subsequentes.
+
+A interface inclui uma barra de navegação interativa com menu suspenso, permitindo a seleção do tipo de conteúdo exibido.
+
+<h4>🛠️ Estrutura do Projeto</h4>
+
+<table>
+  <tr><td><code>TopBooks.jsx</code></td><td>Componente principal que exibe os dados da API</td></tr>
+  <tr><td><code>TopBooks.css</code></td><td>Estilos personalizados do componente</td></tr>
+  <tr><td><code>App.jsx</code></td><td>Componente base que renderiza o TopBooks</td></tr>
+  <tr><td><code>index.css</code></td><td>Estilos globais da aplicação</td></tr>
+  <tr><td><code>main.jsx</code></td><td>Inicialização da aplicação React</td></tr>
+</table>
+
+📦 Dependências
+
+```
+npm create vite@latest ProjetoNivel3 -- --template react
+
+cd ProjetoNivel3
+
+npm install
+```
+
+💡 Funcionalidade
+
+O componente `Topbooks.jsx` realiza uma chamada `fetch` com base no tipo de conteúdo selecionado pelo usuário (livros, cursos, etc). Ele trata os estados de carregamento, erro e implementa cache local com `sessionStorage` para evitar chamadas desnecessárias.
+
+🧠 Estados controlados:
+
+> tipo: controla o tipo de conteúdo selecionado
+
+> carregando: indica se os dados estão sendo carregados
+
+> erro: armazena mensagens de erro
+
+> livros: armazena os dados da API
+
+🔄 Exibição dinâmica
+
+```
+<ul className="topbooks-list">
+  {livros.slice(0, 10).map((item, i) => (
+    <li key={item.CodLivro ?? i} className="topbooks-list-item">
+      <a
+        href={`https://bookplay.com.br/conteudo/${item.CodLivro}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="topbooks-link"
+      >
+        {i + 1}. {item.Nome}
+      </a>
+    </li>
+  ))}
+</ul>
+```
+
+🌐 Navegação e Tipos
+
+A barra de navegação permite ao usuário escolher o tipo de conteúdo a ser exibido:
+
+```
+<select
+  className="topbooks-select"
+  value={tipo}
+  onChange={(e) => setTipo(Number(e.target.value))}
+>
+  <option value={1}>Livros</option>
+  <option value={2}>Cursos</option>
+  <option value={3}>Videoaulas</option>
+  <option value={5}>Banca</option>
+  <option value={6}>Audiobooks</option>
+</select>
+```
+🎨 Estilização (Topbooks.css)
+
+A interface é composta por um card centralizado, com barra superior colorida, seleção de tipo e lista de conteúdos estilizados com sombra, bordas suaves e responsividade.
+
+✨ Destaques de estilo:
+
+> Cores principais: #48a0dc (azul Bookplay) e white
+
+> Sombreamento suave nos itens da lista
+
+> Links estilizados e interativos
+
+> Feedback visual para hover
+
+📱 Responsivo
+
+> Layout adaptado com flex-wrap
+
+> Fonte adaptável para telas menores
+
+> Alinhamento vertical para dispositivos móveis
+
+
 
 
 
