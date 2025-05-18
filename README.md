@@ -75,6 +75,8 @@ Inclui também responsividade com media query para ajustar a visualização em d
 
 **NIVEL 2**
 
+🔗 [Acesse o projeto online](https://processo-de-recrutamento-ebook-u3n7.vercel.app/)
+
 📚 Descrição
 
 Este projeto é uma página web desenvolvida com React + Vite que exibe os 10 livros mais acessados da plataforma Bookplay, consumindo dados diretamente de uma API externa. A interface é responsiva e estilizada com CSS moderno, proporcionando uma experiência clara e amigável ao usuário.
@@ -175,6 +177,8 @@ Para tornar o nome do livro clicável, levando ao site da Bookplay, basta altera
 ---------------------------------------------------------------------------------------------------------------
 
 **NIVEL 3**
+
+🔗 [Acesse o projeto online](https://processo-de-recrutamento-ebook-nu4b.vercel.app/)
 
 📚 Descrição
 
@@ -280,4 +284,9 @@ A interface é composta por um card centralizado, com barra superior colorida, s
 
 
 ---------------------------------------------------------------------------------------------------------------
+
 **NIVEL 4**
+
+🔗 [Acesse o projeto online]()
+
+
