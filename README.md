@@ -4,7 +4,7 @@
 
 🔗 [Acesse o projeto online](https://processo-de-recrutamento-ebook.vercel.app/)
 
-📚 Descrição
+<h4>📚 Descrição</h4>
 
 Este projeto é uma página web desenvolvida com React + Vite que exibe os 10 livros mais acessados da plataforma Bookplay. Os dados são carregados de um arquivo JSON local (dados.json) e apresentados de forma visual, com responsividade e links para a plataforma.
 
@@ -19,7 +19,8 @@ Este projeto é uma página web desenvolvida com React + Vite que exibe os 10 li
   <tr><td><code>main.jsx</code></td><td>Inicialização do React</td></tr>
 </table>
 
-📦 Dependências
+<h4>📦 Dependências</h4>
+
 ```
 npm create vite@latest projeto-nivel1 -- --template react
 
@@ -28,8 +29,8 @@ cd projeto-nivel1
 npm install
 ```
 
-💡 Funcionalidade
-
+<h4>💡 Funcionalidade</h4>
+  
 O componente TopBooks.jsx carrega os dados do JSON e os renderiza em uma lista ordenada com o nome e posição do livro. Aqui está o exemplo de como os livros são exibidos:
 
 ```
@@ -40,7 +41,7 @@ O componente TopBooks.jsx carrega os dados do JSON e os renderiza em uma lista o
   </li>
 ))}
 ```
-🌐 Link para cada livro
+<h4>🌐 Link para cada livro</h4>
 
 Para que o título leve à página do livro no site Bookplay, você pode alterar o JSX adicionando um link:
 
@@ -55,7 +56,7 @@ Para que o título leve à página do livro no site Bookplay, você pode alterar
 </a>
 ```
 
-🎨 Estilização (TopBooks.css)
+<h4>🎨 Estilização (TopBooks.css)</h4>
 
 O estilo visual foi criado com CSS puro para deixar o layout limpo e moderno. Os itens são apresentados em formato de cards coloridos, com destaque para a posição (rank). A classe .rank mostra a posição com uma bolinha branca e número azul.
 
@@ -76,7 +77,7 @@ Inclui também responsividade com media query para ajustar a visualização em d
 
 🔗 [Acesse o projeto online](https://processo-de-recrutamento-ebook-u3n7.vercel.app/)
 
-📚 Descrição
+<h4>📚 Descrição</h4>
 
 Este projeto é uma página web desenvolvida com React + Vite que exibe os 10 livros mais acessados da plataforma Bookplay, consumindo dados diretamente de uma API externa. A interface é responsiva e estilizada com CSS moderno, proporcionando uma experiência clara e amigável ao usuário.
 
@@ -90,7 +91,7 @@ Este projeto é uma página web desenvolvida com React + Vite que exibe os 10 li
   <tr><td><code>main.jsx</code></td><td>Inicialização da aplicação React</td></tr>
 </table>
 
-📦 Dependências
+<h4>📦 Dependências</h4>
 
 ```
 npm create vite@latest projeto-nivel2 -- --template react
@@ -100,14 +101,14 @@ cd projeto-nivel2
 npm install
 ```
 
-💡 Funcionalidade
+<h4>💡 Funcionalidade</h4>
 
 O componente TopBooks.jsx utiliza fetch para obter dados da API:
 ```
 https://bmain.bookplay.com.br/parceiros/6BB6F620/recrutamento/top10/acessos
 ```
 
-🔄 Renderização dos livros
+<h4>🔄 Renderização dos livros</h4>
 
 ```
 {livros.map((livro, index) => (
@@ -118,7 +119,7 @@ https://bmain.bookplay.com.br/parceiros/6BB6F620/recrutamento/top10/acessos
 ))}
 ```
 
-🌐 Link para cada livro
+<h4>🌐 Link para cada livro</h4>
 
 Para tornar o nome do livro clicável, levando ao site da Bookplay, basta alterar o JSX:
 ```
@@ -132,7 +133,7 @@ Para tornar o nome do livro clicável, levando ao site da Bookplay, basta altera
 </a>
 ```
 
-🎨 Estilização (TopBooks.css)
+<h4>🎨 Estilização (TopBooks.css)</h4>
 
 > O layout utiliza CSS puro com foco em visual moderno e responsivo:
 
@@ -144,7 +145,7 @@ Para tornar o nome do livro clicável, levando ao site da Bookplay, basta altera
 
 > Layout responsivo para telas pequenas
 
-📱 Responsividade
+<h4>📱 Responsividade</h4>
 
 ```
 @media (max-width: 600px) {
@@ -179,7 +180,7 @@ Para tornar o nome do livro clicável, levando ao site da Bookplay, basta altera
 
 🔗 [Acesse o projeto online](https://processo-de-recrutamento-ebook-nu4b.vercel.app/)
 
-📚 Descrição
+<h4>📚 Descrição</h4>
 
 Este projeto é uma aplicação web construída com React + Vite, que exibe os 10 conteúdos mais acessados da plataforma Bookplay, incluindo livros, cursos, videoaulas, audiobooks e banca. Os dados são carregados dinamicamente de uma API externa e armazenados no sessionStorage para otimizar requisições subsequentes.
 
@@ -195,7 +196,7 @@ A interface inclui uma barra de navegação interativa com menu suspenso, permit
   <tr><td><code>main.jsx</code></td><td>Inicialização da aplicação React</td></tr>
 </table>
 
-📦 Dependências
+<h4>📦 Dependências</h4>
 
 ```
 npm create vite@latest ProjetoNivel3 -- --template react
@@ -205,11 +206,11 @@ cd ProjetoNivel3
 npm install
 ```
 
-💡 Funcionalidade
+<h4>💡 Funcionalidade</h4>
 
 O componente `Topbooks.jsx` realiza uma chamada `fetch` com base no tipo de conteúdo selecionado pelo usuário (livros, cursos, etc). Ele trata os estados de carregamento, erro e implementa cache local com `sessionStorage` para evitar chamadas desnecessárias.
 
-🧠 Estados controlados:
+<h4>🧠 Estados controlados:</h4>
 
 > tipo: controla o tipo de conteúdo selecionado
 
@@ -219,7 +220,7 @@ O componente `Topbooks.jsx` realiza uma chamada `fetch` com base no tipo de cont
 
 > livros: armazena os dados da API
 
-🔄 Exibição dinâmica
+<h4>🔄 Exibição dinâmica</h4>
 
 ```
 <ul className="topbooks-list">
@@ -238,7 +239,7 @@ O componente `Topbooks.jsx` realiza uma chamada `fetch` com base no tipo de cont
 </ul>
 ```
 
-🌐 Navegação e Tipos
+<h4>🌐 Navegação e Tipos</h4>
 
 A barra de navegação permite ao usuário escolher o tipo de conteúdo a ser exibido:
 
@@ -255,11 +256,11 @@ A barra de navegação permite ao usuário escolher o tipo de conteúdo a ser ex
   <option value={6}>Audiobooks</option>
 </select>
 ```
-🎨 Estilização (Topbooks.css)
+<h4>🎨 Estilização (Topbooks.css)</h4>
 
 A interface é composta por um card centralizado, com barra superior colorida, seleção de tipo e lista de conteúdos estilizados com sombra, bordas suaves e responsividade.
 
-✨ Destaques de estilo:
+<h4>✨ Destaques de estilo:</h4>
 
 > Cores principais: #48a0dc (azul Bookplay) e white
 
@@ -269,7 +270,7 @@ A interface é composta por um card centralizado, com barra superior colorida, s
 
 > Feedback visual para hover
 
-📱 Responsivo
+<h4>📱 Responsivo</h4>
 
 > Layout adaptado com flex-wrap
 
@@ -287,11 +288,11 @@ A interface é composta por um card centralizado, com barra superior colorida, s
 <h3>NIVEL 4</h3>
 
 
-📚 Descrição
+<h4>📚 Descrição</h4>
 
 Aplicação web desenvolvida com React (frontend) e Node.js + Express (backend), conectando-se a um banco de dados MySQL. O sistema permite cadastro, login, alteração de senha e exibe os 10 títulos mais acessados da Bookplay. A autenticação e a navegação entre as páginas são seguras e interativas.
 
-🛠️ Tecnologias Utilizadas
+<h4>🛠️ Tecnologias Utilizadas</h4>
 
 🧑‍💻 Frontend:
 
@@ -328,7 +329,7 @@ Aplicação web desenvolvida com React (frontend) e Node.js + Express (backend),
 | `/`               | GET    | Verificação básica do servidor |
 
 
-🔧 Como Executar o Projeto
+<h4>🔧 Como Executar o Projeto</h4>
 
 ✅ Pré-requisitos
 
@@ -354,7 +355,7 @@ npm install
 npm run dev
 ```
 
-⚙️ Funcionalidades Detalhadas com Código
+<h4>⚙️ Funcionalidades Detalhadas com Código</h4>
 
 
 1. 🔐 Registro de Usuário
@@ -417,7 +418,7 @@ app.post("/reset-password", async (req, res) => {
 > 🔐 O sistema compara os emails cadastrados e redefine a senha com segurança.
 
 
-🖥️ React - Exemplo de Loginz
+<h4>🖥️ React - Exemplo de Login</h4>
 
 
 Arquivo: components/Login.jsx
@@ -461,7 +462,7 @@ useEffect(() => {
 > 🚀 Exibe os dados do top 10 e armazena localmente para evitar recarregamentos.
 
 
-🗃️ Estrutura do Banco de Dados (MySQL)
+<h4>🗃️ Estrutura do Banco de Dados (MySQL)</h4>
 
 ```
 CREATE DATABASE bookplay_db;
