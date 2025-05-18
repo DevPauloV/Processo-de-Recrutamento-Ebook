@@ -288,4 +288,221 @@ A interface é composta por um card centralizado, com barra superior colorida, s
 
 🔗 [Acesse o projeto online]()
 
+📚 Descrição
+
+Aplicação web desenvolvida com React (frontend) e Node.js + Express (backend), conectando-se a um banco de dados MySQL. O sistema permite cadastro, login, alteração de senha e exibe os 10 títulos mais acessados da Bookplay. A autenticação e a navegação entre as páginas são seguras e interativas.
+
+🛠️ Tecnologias Utilizadas
+
+🧑‍💻 Frontend:
+
+> React Router para navegação entre páginas.
+
+> Axios para requisições HTTP.
+
+> useState e useEffect para gerenciamento de estado e efeitos colaterais. 
+
+> CSS Modularizado para estilização por página.
+
+> sessionStorage para armazenar o usuario logado
+
+> Validações e feedbacks dinâmicos para o usuário. 
+
+🌐 Backend:
+
+> Node.js + Express como framework web.
+
+> MySQL2 para comunicação com banco de dados relacional.
+
+> bcryptjs  para hashing seguro de senhas.
+
+> CORS e body-parser para configuração do servidor.
+
+
+🌐 Endpoints da API
+
+| Rota              | Método | Descrição                      |
+| ----------------- | ------ | ------------------------------ |
+| `/register`       | POST   | Registra novo usuário          |
+| `/login`          | POST   | Faz login com email e senha    |
+| `/reset-password` | POST   | Redefine a senha do usuário    |
+| `/`               | GET    | Verificação básica do servidor |
+
+
+🔧 Como Executar o Projeto
+
+✅ Pré-requisitos
+
+> Node.js
+
+> MySQL
+
+> npm ou yarn
+
+1️⃣ Backend
+
+```
+cd backend
+npm install
+node server.js
+```
+
+2️⃣ Frontend
+
+```
+cd frontend
+npm install
+npm run dev
+```
+
+⚙️ Funcionalidades Detalhadas com Código
+
+
+1. 🔐 Registro de Usuário
+
+Arquivo: backend/server.js
+```
+app.post("/register", async (req, res) => {
+  const { name, email, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  db.query("INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+    [name, email, hashedPassword],
+    (err, result) => {
+      if (err) return res.status(500).json({ error: "Erro ao registrar" });
+      return res.status(201).json({ message: "Usuário registrado com sucesso" });
+    }
+  );
+});
+```
+> 🔎 Esse trecho mostra a criação de um novo usuário com senha criptografada no banco de dados.
+
+
+2. 🔓 Login de Usuário
+
+Arquivo: backend/db.js
+```
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  db.query("SELECT * FROM users WHERE email = ?", [email], async (err, result) => {
+    if (err || result.length === 0) {
+      return res.status(401).json({ error: "Usuário não encontrado" });
+    }
+
+    const user = result[0];
+    const match = await bcrypt.compare(password, user.password);
+
+    if (match) {
+      return res.status(200).json({ message: "Login bem-sucedido", user: user.name });
+    } else {
+      return res.status(401).json({ error: "Senha incorreta" });
+    }
+  });
+});
+```
+
+3. 🔃 Redefinição de Senha
+   
+```
+app.post("/reset-password", async (req, res) => {
+  const { email, newPassword } = req.body;
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  db.query("UPDATE users SET password = ? WHERE email = ?", [hashedPassword, email], (err) => {
+    if (err) return res.status(500).json({ error: "Erro ao atualizar senha" });
+    return res.status(200).json({ message: "Senha atualizada com sucesso" });
+  });
+});
+``` 
+> 🔐 O sistema compara os emails cadastrados e redefine a senha com segurança.
+
+
+🖥️ React - Exemplo de Loginz
+
+
+Arquivo: components/Login.jsx
+```
+const handleLogin = async (e) => {
+  e.preventDefault();
+  const response = await axios.post("http://localhost:3001/login", { email, password });
+
+  if (response.data.message === "Login bem-sucedido") {
+    sessionStorage.setItem("user", response.data.user);
+    navigate("/topbooks");
+  } else {
+    setErro("Email ou senha inválidos");
+  }
+};
+```
+> 📌 Após login bem-sucedido, o nome do usuário é armazenado no sessionStorage e redirecionado.
+
+
+📊 Tela dos 10 Conteúdos Mais Acessados
+
+Arquivo: components/TopBooks.jsx
+```
+useEffect(() => {
+  if (!sessionStorage.getItem("user")) {
+    navigate("/login");
+  } else {
+    const dadosSalvos = sessionStorage.getItem("conteudo");
+    if (dadosSalvos) {
+      setConteudo(JSON.parse(dadosSalvos));
+    } else {
+      axios.get("https://api.bookplay.com.br/conteudos/top10")
+        .then((res) => {
+          setConteudo(res.data);
+          sessionStorage.setItem("conteudo", JSON.stringify(res.data));
+        });
+    }
+  }
+}, []);
+```
+> 🚀 Exibe os dados do top 10 e armazena localmente para evitar recarregamentos.
+
+
+🗃️ Estrutura do Banco de Dados (MySQL)
+
+```
+CREATE DATABASE bookplay_db;
+
+USE bookplay_db;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  password VARCHAR(255)
+);
+```
+> 💡 A senha é armazenada com hash bcrypt (não em texto puro).
+
+
+<h4>🛠️ Estrutura do Projeto</h4>
+
+<table>
+  <tr><td><code>forgotpassword.jsx</code></td><td>Tela de recuperação de senha (ex: "Esqueci minha senha").</td></tr>
+  <tr><td><code>Login.jsx</code></td><td>Tela de login onde o usuário insere nome e senha.</td></tr>
+  <tr><td><code>Register.jsx</code></td><td>Tela de registro/cadastro de novos usuários.</td></tr>
+  <tr><td><code>Topbooks.jsx</code></td><td>Página que exibe os 10 livros mais acessados (Top 10)</td></tr>
+  <tr><td><code>App.jsx</code></td><td>Contém as rotas (React Router) para acessar Login, Register, Topbooks</td></tr>
+  <tr><td><code>index.css</code></td><td>Estilos globais da aplicação, aplicados a todas as páginas</td></tr>
+  <tr><td><code>main.jsx</code></td><td>Tela de registro/cadastro de novos usuários.</td></tr>
+  <tr><td><code>db.js</code></td><td>Renderiza o componente <App /> servidor backend da aplicação, implementado com Node.js usando Express como framework principal, MySQL como banco de dados e bcryptjs para segurança de senhas. Ele funciona como a ponte entre o frontend (React) e o banco de dados.</td></tr>
+</table>
+
+
+
+<h2>🧑‍💼 Autor</h2>
+
+> Nome: Paulo Victor 
+
+> GitHub: @DevPauloV
+
+> Contato: vitorcanalle@gmail.com
+
+
+
+
 
