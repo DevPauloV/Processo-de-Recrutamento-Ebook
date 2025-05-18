@@ -14,7 +14,6 @@ function Login() {
       const res = await axios.post('http://localhost:3001/login', { email, password });
       alert(res.data.message);
 
-      // ✅ Salva usuário logado
       sessionStorage.setItem('usuarioLogado', JSON.stringify(res.data.user));
 
       navigate('/topbooks');

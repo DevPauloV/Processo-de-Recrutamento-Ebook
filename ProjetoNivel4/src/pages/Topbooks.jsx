@@ -17,6 +17,11 @@ export default function TopBooks() {
     const [erro, setErro] = useState(null);
     const [carregando, setCarregando] = useState(false);
 
+    const handleLogout = () => {
+        sessionStorage.removeItem('usuarioLogado');
+        navigate('/');
+    };
+
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal;
@@ -42,12 +47,12 @@ export default function TopBooks() {
                 const result = data.data || [];
                 setLivros(result);
                 sessionStorage.setItem(cacheKey, JSON.stringify(result));
-                setCarregando(false); 
+                setCarregando(false);
             })
             .catch(err => {
                 if (err.name === 'AbortError') return;
                 setErro(err.message);
-                setCarregando(false); 
+                setCarregando(false);
             });
 
         return () => controller.abort();
@@ -56,7 +61,7 @@ export default function TopBooks() {
     return (
         <div className="topbooks-container">
             <nav className="topbooks-navbar">
-                <h2 className="topbooks-title">Top 10 mais acessados</h2>
+                <h2 className="topbooks-title">Top 10 </h2>
                 <select
                     className="topbooks-select"
                     value={tipo}
@@ -68,6 +73,7 @@ export default function TopBooks() {
                     <option value={5}>Banca</option>
                     <option value={6}>Audiobooks</option>
                 </select>
+                <button className="topbooks-logout" onClick={handleLogout}>Sair</button>
             </nav>
 
             <div className="topbooks-content">

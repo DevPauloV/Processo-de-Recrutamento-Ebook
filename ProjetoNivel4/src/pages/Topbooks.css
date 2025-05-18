@@ -1,96 +1,103 @@
-/* Container geral */
 .topbooks-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 2rem auto;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
 }
 
-/* Navbar */
 .topbooks-navbar {
-  background-color: #48a0dc;
-  color: white;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  border-radius: 8px 8px 0 0;
+    background-color: #48a0dc;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: 8px 8px 0 0;
 }
 
 .topbooks-title {
-  margin: 0;
-  font-weight: 700;
-  font-size: 1.8rem;
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.8rem;
 }
 
-/* Select dentro da navbar */
 .topbooks-select {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color: white;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
 }
 
 .topbooks-select:hover,
 .topbooks-select:focus {
-  border-color: #005fa3;
-  outline: none;
+    border-color: #005fa3;
+    outline: none;
 }
 
-/* Conteúdo abaixo da navbar */
 .topbooks-content {
-  padding: 1.5rem 2rem 2rem 2rem;
+    padding: 1.5rem 2rem 2rem 2rem;
 }
 
-/* Mensagem de erro */
 .topbooks-error {
-  color: red;
-  margin-bottom: 1rem;
+    color: red;
+    margin-bottom: 1rem;
 }
 
-/* Lista sem estilo padrão */
 .topbooks-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
 }
 
-/* Itens da lista estilizados */
 .topbooks-list-item {
-  background-color: #48a0dc;
-  color: white;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.75rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: background-color 0.3s ease;
-  font-size: 1.1rem;
+    background-color: #48a0dc;
+    color: white;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+    font-size: 1.1rem;
 }
 
 .topbooks-list-item:hover {
-  background-color: #005fa3;
+    background-color: #005fa3;
 }
 
-/* Links dentro dos itens */
 .topbooks-link {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .topbooks-link:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .topbooks-loading {
-  text-align: center;
-  font-weight: bold;
-  color: #555;
-  padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+    padding: 1rem;
+}
+
+.topbooks-logout {
+    margin-left: 20px;
+    padding: 6px 12px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.topbooks-logout:hover {
+    background-color: #c9302c;
 }
