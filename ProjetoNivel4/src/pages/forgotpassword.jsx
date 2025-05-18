@@ -59,7 +59,7 @@ function ForgotPassword() {
 
         <button type="submit">Alterar senha</button>
 
-        {message && <p className="message">{message}</p>}
+        {message && <p className="error-message">{message}</p>}
 
         <p>
           <Link to="/" className="register-link">Voltar para o login</Link>

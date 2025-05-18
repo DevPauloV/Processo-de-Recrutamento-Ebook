@@ -7,16 +7,20 @@ function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/register', { name, email, password });
-      alert('Cadastrado com sucesso!');
-      navigate('/');
+      const res = await axios.post('http://localhost:3001/register', { name, email, password });
+
+      setMessage(res.data.message || 'Cadastrado com sucesso!');
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
     } catch (err) {
-      alert(err.response?.data?.error || 'Erro no cadastro');
+      setMessage(err.response?.data?.error || 'Erro no cadastro');
     }
   };
 
@@ -24,6 +28,7 @@ function Register() {
     <div className="register-container">
       <form onSubmit={handleRegister} className="register-form">
         <h2>Cadastro</h2>
+
         <input
           type="text"
           placeholder="Nome"
@@ -45,6 +50,9 @@ function Register() {
           onChange={e => setPassword(e.target.value)}
           required
         />
+
+        {message && <div className="error-message">{message}</div>}
+
         <button type="submit">Cadastrar</button>
 
         <p className="login-link-text">
