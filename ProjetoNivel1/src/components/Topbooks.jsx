@@ -1,5 +1,5 @@
 import dados from '../dados.json';
-import './TopBooks.css';
+import './Topbooks.css';
 
 export default function TopBooks() {
   const livros = dados.data;
