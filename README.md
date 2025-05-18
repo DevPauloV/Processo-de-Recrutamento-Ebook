@@ -1,7 +1,6 @@
-<h1>🧾 README — Projeto Top 10 Livros Bookplay</h1>
+<h1>🧾 README — Projeto Top 10 Bookplay</h1>
 
----------------------------------------------------------------------------------------------------------------
-**NIVEL 1**
+<h3>NIVEL 1</h3>
 
 🔗 [Acesse o projeto online](https://processo-de-recrutamento-ebook.vercel.app/)
 
@@ -73,7 +72,7 @@ Inclui também responsividade com media query para ajustar a visualização em d
 
 ---------------------------------------------------------------------------------------------------------------
 
-**NIVEL 2**
+<h3>NIVEL 2</h3>
 
 🔗 [Acesse o projeto online](https://processo-de-recrutamento-ebook-u3n7.vercel.app/)
 
@@ -176,7 +175,7 @@ Para tornar o nome do livro clicável, levando ao site da Bookplay, basta altera
 
 ---------------------------------------------------------------------------------------------------------------
 
-**NIVEL 3**
+<h3>NIVEL 3</h3>
 
 🔗 [Acesse o projeto online](https://processo-de-recrutamento-ebook-nu4b.vercel.app/)
 
@@ -285,7 +284,7 @@ A interface é composta por um card centralizado, com barra superior colorida, s
 
 ---------------------------------------------------------------------------------------------------------------
 
-**NIVEL 4**
+<h3>NIVEL 4</h3>
 
 🔗 [Acesse o projeto online]()
 
