@@ -68,7 +68,6 @@ Inclui também responsividade com media query para ajustar a visualização em d
     align-items: flex-start;
   }
 }
-
 ```
 
 ---------------------------------------------------------------------------------------------------------------
@@ -97,7 +96,6 @@ npm create vite@latest projeto-nivel2 -- --template react
 cd projeto-nivel2
 
 npm install
-
 ```
 
 💡 Funcionalidade
@@ -145,6 +143,7 @@ Para tornar o nome do livro clicável, levando ao site da Bookplay, basta altera
 > Layout responsivo para telas pequenas
 
 📱 Responsividade
+
 ```
 @media (max-width: 600px) {
   .book-item {
