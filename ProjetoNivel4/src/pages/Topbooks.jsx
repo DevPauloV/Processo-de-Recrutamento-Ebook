@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './styles/Topbooks.css';
+import '../styles/Topbooks.css';
+
+
 
 export default function TopBooks() {
     const navigate = useNavigate();
