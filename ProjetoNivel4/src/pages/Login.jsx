@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -6,19 +7,18 @@ import '../styles/Login.css';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:3001/login', { email, password });
-      alert(res.data.message);
 
       sessionStorage.setItem('usuarioLogado', JSON.stringify(res.data.user));
-
       navigate('/topbooks');
     } catch (err) {
-      alert(err.response?.data?.error || 'Erro ao logar');
+      setErrorMessage(err.response?.data?.error || 'Erro ao logar');
     }
   };
 
@@ -26,6 +26,8 @@ function Login() {
     <div className="login-container">
       <form onSubmit={handleLogin} className="login-form">
         <h2>Login</h2>
+
+        
         <input
           type="email"
           placeholder="Email"
@@ -41,7 +43,9 @@ function Login() {
           required
         />
 
-       
+        
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
+
         <p className="forgot-password-link-text">
           <Link to="/forgot-password" className="forgot-password-link">Esqueci minha senha</Link>
         </p>
