@@ -1,7 +1,17 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Topbooks.css';
 
 export default function TopBooks() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const estaLogado = sessionStorage.getItem('usuarioLogado');
+        if (!estaLogado) {
+            navigate('/');
+        }
+    }, []);
+
     const [livros, setLivros] = useState([]);
     const [tipo, setTipo] = useState(1);
     const [erro, setErro] = useState(null);

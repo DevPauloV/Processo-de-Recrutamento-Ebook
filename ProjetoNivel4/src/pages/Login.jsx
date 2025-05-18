@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import './Login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -12,19 +13,41 @@ function Login() {
     try {
       const res = await axios.post('http://localhost:3001/login', { email, password });
       alert(res.data.message);
-      navigate('/top10');
+
+      // ✅ Salva usuário logado
+      sessionStorage.setItem('usuarioLogado', JSON.stringify(res.data.user));
+
+      navigate('/topbooks');
     } catch (err) {
       alert(err.response?.data?.error || 'Erro ao logar');
     }
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-      <input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} required />
-      <button type="submit">Entrar</button>
-    </form>
+    <div className="login-container">
+      <form onSubmit={handleLogin} className="login-form">
+        <h2>Login</h2>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Entrar</button>
+
+        <p className="register-link-text">
+          Não tem conta? <Link to="/register" className="register-link">Faça seu registro</Link>
+        </p>
+      </form>
+    </div>
   );
 }
 

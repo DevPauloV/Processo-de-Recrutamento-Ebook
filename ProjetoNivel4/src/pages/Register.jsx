@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import './Register.css';
 
 function Register() {
   const [name, setName] = useState('');
@@ -20,13 +21,37 @@ function Register() {
   };
 
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Cadastro</h2>
-      <input type="text" placeholder="Nome" value={name} onChange={e => setName(e.target.value)} required />
-      <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-      <input type="password" placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)} required />
-      <button type="submit">Cadastrar</button>
-    </form>
+    <div className="register-container">
+      <form onSubmit={handleRegister} className="register-form">
+        <h2>Cadastro</h2>
+        <input
+          type="text"
+          placeholder="Nome"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Cadastrar</button>
+
+        <p className="login-link-text">
+          Já tem conta? <Link to="/" className="login-link">Faça login</Link>
+        </p>
+      </form>
+    </div>
   );
 }
 
