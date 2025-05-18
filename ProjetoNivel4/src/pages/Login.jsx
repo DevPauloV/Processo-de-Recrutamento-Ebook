@@ -40,6 +40,12 @@ function Login() {
           onChange={e => setPassword(e.target.value)}
           required
         />
+
+       
+        <p className="forgot-password-link-text">
+          <Link to="/forgot-password" className="forgot-password-link">Esqueci minha senha</Link>
+        </p>
+
         <button type="submit">Entrar</button>
 
         <p className="register-link-text">

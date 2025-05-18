@@ -10,74 +10,77 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'bookplay_db'
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'bookplay_db'
 });
 
 db.connect(err => {
-    if (err) throw err;
-    console.log('MySQL conectado!');
+  if (err) throw err;
+  console.log('MySQL conectado!');
 });
-
 
 app.get('/', (req, res) => {
-    res.send('Servidor backend está funcionando!');
+  res.send('Servidor backend está funcionando!');
 });
-
-
 
 app.post('/register', async (req, res) => {
-    const {
-        name,
-        email,
-        password
-    } = req.body;
-    const hash = await bcrypt.hash(password, 10);
+  const { name, email, password } = req.body;
+  const hash = await bcrypt.hash(password, 10);
 
-    db.query('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name, email, hash], (err) => {
-        if (err) return res.status(400).json({
-            error: 'Erro no cadastro'
-        });
-        res.status(201).json({
-            message: 'Usuário registrado!'
-        });
-    });
+  db.query('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name, email, hash], (err) => {
+    if (err) return res.status(400).json({ error: 'Erro no cadastro' });
+    res.status(201).json({ message: 'Usuário registrado!' });
+  });
 });
 
-
 app.post('/login', (req, res) => {
-    const {
-        email,
-        password
-    } = req.body;
+  const { email, password } = req.body;
 
-    db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
-        if (err) return res.status(500).json({
-            error: 'Erro no servidor'
-        });
-        if (results.length === 0) return res.status(400).json({
-            error: 'Usuário não encontrado'
-        });
+  db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
+    if (err) return res.status(500).json({ error: 'Erro no servidor' });
+    if (results.length === 0) return res.status(400).json({ error: 'Usuário não encontrado' });
 
-        const user = results[0];
-        const isMatch = await bcrypt.compare(password, user.password);
+    const user = results[0];
+    const isMatch = await bcrypt.compare(password, user.password);
 
-        if (!isMatch) return res.status(401).json({
-            error: 'Senha incorreta'
-        });
+    if (!isMatch) return res.status(401).json({ error: 'Senha incorreta' });
 
-
-        res.status(200).json({
-            message: 'Login realizado com sucesso',
-            user: {
-                id: user.id,
-                name: user.name,
-                email: user.email
-            }
-        });
+    res.status(200).json({
+      message: 'Login realizado com sucesso',
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      }
     });
+  });
+});
+
+// NOVA ROTA PARA RESET DE SENHA
+app.post('/reset-password', async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  if (!email || !newPassword) {
+    return res.status(400).json({ error: 'Email e nova senha são obrigatórios' });
+  }
+
+  try {
+    const hash = await bcrypt.hash(newPassword, 10);
+
+    db.query('UPDATE users SET password = ? WHERE email = ?', [hash, email], (err, result) => {
+      if (err) return res.status(500).json({ error: 'Erro ao atualizar senha' });
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: 'Usuário não encontrado' });
+      }
+
+      res.status(200).json({ message: 'Senha alterada com sucesso!' });
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Erro no servidor' });
+  }
 });
 
 app.listen(3001, () => console.log('Servidor rodando na porta 3001'));
