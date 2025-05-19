@@ -1,4 +1,3 @@
-// server.js
 import express from 'express';
 import mysql from 'mysql2';
 import bcrypt from 'bcryptjs';
@@ -26,26 +25,43 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
+  const {
+    name,
+    email,
+    password
+  } = req.body;
   const hash = await bcrypt.hash(password, 10);
 
   db.query('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name, email, hash], (err) => {
-    if (err) return res.status(400).json({ error: 'Erro no cadastro' });
-    res.status(201).json({ message: 'Usuário registrado!' });
+    if (err) return res.status(400).json({
+      error: 'Erro no cadastro'
+    });
+    res.status(201).json({
+      message: 'Usuário registrado!'
+    });
   });
 });
 
 app.post('/login', (req, res) => {
-  const { email, password } = req.body;
+  const {
+    email,
+    password
+  } = req.body;
 
   db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
-    if (err) return res.status(500).json({ error: 'Erro no servidor' });
-    if (results.length === 0) return res.status(400).json({ error: 'Usuário não encontrado' });
+    if (err) return res.status(500).json({
+      error: 'Erro no servidor'
+    });
+    if (results.length === 0) return res.status(400).json({
+      error: 'Usuário não encontrado'
+    });
 
     const user = results[0];
     const isMatch = await bcrypt.compare(password, user.password);
 
-    if (!isMatch) return res.status(401).json({ error: 'Senha incorreta' });
+    if (!isMatch) return res.status(401).json({
+      error: 'Senha incorreta'
+    });
 
     res.status(200).json({
       message: 'Login realizado com sucesso',
@@ -58,28 +74,40 @@ app.post('/login', (req, res) => {
   });
 });
 
-// NOVA ROTA PARA RESET DE SENHA
 app.post('/reset-password', async (req, res) => {
-  const { email, newPassword } = req.body;
+  const {
+    email,
+    newPassword
+  } = req.body;
 
   if (!email || !newPassword) {
-    return res.status(400).json({ error: 'Email e nova senha são obrigatórios' });
+    return res.status(400).json({
+      error: 'Email e nova senha são obrigatórios'
+    });
   }
 
   try {
     const hash = await bcrypt.hash(newPassword, 10);
 
     db.query('UPDATE users SET password = ? WHERE email = ?', [hash, email], (err, result) => {
-      if (err) return res.status(500).json({ error: 'Erro ao atualizar senha' });
+      if (err) return res.status(500).json({
+        error: 'Erro ao atualizar senha'
+      });
 
       if (result.affectedRows === 0) {
-        return res.status(404).json({ error: 'Usuário não encontrado' });
+        return res.status(404).json({
+          error: 'Usuário não encontrado'
+        });
       }
 
-      res.status(200).json({ message: 'Senha alterada com sucesso!' });
+      res.status(200).json({
+        message: 'Senha alterada com sucesso!'
+      });
     });
   } catch (err) {
-    res.status(500).json({ error: 'Erro no servidor' });
+    res.status(500).json({
+      error: 'Erro no servidor'
+    });
   }
 });
 
